@@ -1,0 +1,20 @@
+[
+  {
+    "scenario_name": "Позитивный: Создание Task",
+    "summary": "Автотест: Проверить интеграцию с Jira API",
+    "type": "Task",
+    "expected_status": 201
+  },
+  {
+    "scenario_name": "Позитивный: Создание Bug",
+    "summary": "Автотест: Критический баг в модуле оплаты",
+    "type": "Bug",
+    "expected_status": 201
+  },
+  {
+    "scenario_name": "Негативный: Пустой summary",
+    "summary": "",
+    "type": "Task",
+    "expected_status": 400
+  }
+]
