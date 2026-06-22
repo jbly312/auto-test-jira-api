@@ -1,0 +1,159 @@
+{
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "10229",
+    "self": "https://test-issue.atlassian.net/rest/api/3/issue/10229",
+    "key": "TI-113",
+    "fields": {
+        "statuscategorychangedate": "2026-06-22T20:15:19.562+0500",
+        "issuetype": {
+            "self": "https://test-issue.atlassian.net/rest/api/3/issuetype/10016",
+            "id": "10016",
+            "description": "",
+            "iconUrl": "https://test-issue.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+            "name": "Bug",
+            "subtask": false,
+            "avatarId": 10303,
+            "entityId": "0d8f2451-fb6a-41ac-af44-6200c1077f20",
+            "hierarchyLevel": 0
+        },
+        "components": [],
+        "timespent": null,
+        "timeoriginalestimate": null,
+        "project": {
+            "self": "https://test-issue.atlassian.net/rest/api/3/project/10034",
+            "id": "10034",
+            "key": "TI",
+            "name": "test_issue",
+            "projectTypeKey": "software",
+            "simplified": true,
+            "avatarUrls": {
+                "48x48": "https://test-issue.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10424",
+                "24x24": "https://test-issue.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10424?size=small",
+                "16x16": "https://test-issue.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10424?size=xsmall",
+                "32x32": "https://test-issue.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10424?size=medium"
+            }
+        },
+        "description": null,
+        "fixVersions": [],
+        "aggregatetimespent": null,
+        "statusCategory": {
+            "self": "https://test-issue.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+        },
+        "resolution": null,
+        "timetracking": {},
+        "customfield_10015": null,
+        "security": null,
+        "attachment": [],
+        "aggregatetimeestimate": null,
+        "resolutiondate": null,
+        "workratio": -1,
+        "summary": "Автотест: Критический баг в модуле оплаты",
+        "issuerestriction": {
+            "issuerestrictions": {},
+            "shouldDisplay": true
+        },
+        "watches": {
+            "self": "https://test-issue.atlassian.net/rest/api/3/issue/TI-113/watchers",
+            "watchCount": 1,
+            "isWatching": true
+        },
+        "lastViewed": null,
+        "creator": {
+            "self": "https://test-issue.atlassian.net/rest/api/3/user?accountId=712020%3Abecae729-678e-4269-a6b3-11ea40c070d3",
+            "accountId": "712020:becae729-678e-4269-a6b3-11ea40c070d3",
+            "emailAddress": "jbly312@gmail.com",
+            "avatarUrls": {
+                "48x48": "https://secure.gravatar.com/avatar/dfb5d0a8c0d174a41d80f4c626523753?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-5.png",
+                "24x24": "https://secure.gravatar.com/avatar/dfb5d0a8c0d174a41d80f4c626523753?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-5.png",
+                "16x16": "https://secure.gravatar.com/avatar/dfb5d0a8c0d174a41d80f4c626523753?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-5.png",
+                "32x32": "https://secure.gravatar.com/avatar/dfb5d0a8c0d174a41d80f4c626523753?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-5.png"
+            },
+            "displayName": "Александр Луговой",
+            "active": true,
+            "timeZone": "Asia/Yekaterinburg",
+            "accountType": "atlassian"
+        },
+        "subtasks": [],
+        "created": "2026-06-22T20:15:19.305+0500",
+        "customfield_10040": null,
+        "customfield_10020": null,
+        "customfield_10021": null,
+        "reporter": {
+            "self": "https://test-issue.atlassian.net/rest/api/3/user?accountId=712020%3Abecae729-678e-4269-a6b3-11ea40c070d3",
+            "accountId": "712020:becae729-678e-4269-a6b3-11ea40c070d3",
+            "emailAddress": "jbly312@gmail.com",
+            "avatarUrls": {
+                "48x48": "https://secure.gravatar.com/avatar/dfb5d0a8c0d174a41d80f4c626523753?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-5.png",
+                "24x24": "https://secure.gravatar.com/avatar/dfb5d0a8c0d174a41d80f4c626523753?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-5.png",
+                "16x16": "https://secure.gravatar.com/avatar/dfb5d0a8c0d174a41d80f4c626523753?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-5.png",
+                "32x32": "https://secure.gravatar.com/avatar/dfb5d0a8c0d174a41d80f4c626523753?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-5.png"
+            },
+            "displayName": "Александр Луговой",
+            "active": true,
+            "timeZone": "Asia/Yekaterinburg",
+            "accountType": "atlassian"
+        },
+        "aggregateprogress": {
+            "progress": 0,
+            "total": 0
+        },
+        "priority": {
+            "self": "https://test-issue.atlassian.net/rest/api/3/priority/3",
+            "iconUrl": "https://test-issue.atlassian.net/images/icons/priorities/medium_new.svg",
+            "name": "Medium",
+            "id": "3"
+        },
+        "customfield_10001": null,
+        "labels": [],
+        "customfield_10016": null,
+        "environment": null,
+        "customfield_10019": "0|i0003j:",
+        "timeestimate": null,
+        "aggregatetimeoriginalestimate": null,
+        "versions": [],
+        "duedate": null,
+        "progress": {
+            "progress": 0,
+            "total": 0
+        },
+        "issuelinks": [],
+        "votes": {
+            "self": "https://test-issue.atlassian.net/rest/api/3/issue/TI-113/votes",
+            "votes": 0,
+            "hasVoted": false
+        },
+        "comment": {
+            "comments": [],
+            "self": "https://test-issue.atlassian.net/rest/api/3/issue/10229/comment",
+            "maxResults": 0,
+            "total": 0,
+            "startAt": 0
+        },
+        "assignee": null,
+        "worklog": {
+            "startAt": 0,
+            "maxResults": 20,
+            "total": 0,
+            "worklogs": []
+        },
+        "updated": "2026-06-22T20:15:19.351+0500",
+        "status": {
+            "self": "https://test-issue.atlassian.net/rest/api/3/status/10008",
+            "description": "",
+            "iconUrl": "https://test-issue.atlassian.net/images/icons/statuses/generic.png",
+            "name": "To Do",
+            "id": "10008",
+            "statusCategory": {
+                "self": "https://test-issue.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+            }
+        }
+    }
+}
