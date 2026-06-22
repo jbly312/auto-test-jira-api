@@ -15,7 +15,7 @@ def test_update_issue(base_url, jira_auth_headers):
     }
 
     response_create = requests.post(create_url, headers=jira_auth_headers, json=payload_create)
-    assert response_create.status_code == 204
+    assert response_create.status_code == 201
 
     issue_id = response_create.json()["id"]
     issues_key = response_create.json()["key"]
@@ -33,7 +33,7 @@ def test_update_issue(base_url, jira_auth_headers):
                 attachment_type=allure.attachment_type.JSON
             )
             response = requests.put(issues_url, headers=jira_auth_headers, json=payload_update)
-            assert response.status_code == 201
+            assert response.status_code == 204
 
         with allure.step(f"Отправка GET запроса для проверки"):
             response_get = requests.get(issues_url, headers=jira_auth_headers)
