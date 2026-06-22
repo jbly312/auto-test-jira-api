@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    runs-mode: ubuntu-latest  # Запускаем на чистой Linux-машине в облаке GitHub
+    runs-on: ubuntu-latest  # Запускаем на чистой Linux-машине в облаке GitHub
 
     steps:
     # 1. Скачиваем код репозитория на виртуальную машину
@@ -31,9 +31,9 @@ jobs:
     # 4. Запускаем тесты и прокидываем секреты из настроек GitHub в переменные среды
     - name: Run Pytest Automation Suite
       env:
-        JIRA_BASE_URL: ${{ secrets::JIRA_BASE_URL }}
-        JIRA_EMAIL: ${{ secrets::JIRA_EMAIL }}
-        JIRA_API_TOKEN: ${{ secrets::JIRA_API_TOKEN }}
+        JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+        JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
         JIRA_PROJECT_KEY: "TI"
       run: |
         pytest -v tests/test_issues.py
