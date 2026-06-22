@@ -29,7 +29,7 @@ def test_create_issue_ddt(case, base_url, jira_auth_headers):
     created_issue_id = None
 
     try:
-        # === 1. ШАГ: ОТПРАВКА POST ЗАПРОСА ===
+
         with allure.step("Отправка POST запроса на создание задачи"):
             allure.attach(
                 json.dumps(payload, indent=4, ensure_ascii=False),
@@ -48,7 +48,6 @@ def test_create_issue_ddt(case, base_url, jira_auth_headers):
         # Проверяем ожидаемый статус из тест-данных
         assert response.status_code == case["expected_status"], f"Ошибка: {response.text}"
 
-        # === 2. ШАГ: ЕСЛИ ЗАДАЧА СОЗДАНА, ПРОВЕРЯЕМ ЕЁ ЧЕРЕЗ GET ===
         if response.status_code == 201:
             response_data = response.json()
             created_issue_id = response_data["id"]
