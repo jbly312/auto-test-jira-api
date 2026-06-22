@@ -15,7 +15,7 @@ def test_update_issue(base_url, jira_auth_headers):
     }
 
     response_create = requests.post(create_url, headers=jira_auth_headers, json=payload_create)
-    assert response_create.status_code == 201
+    assert response_create.status_code == 204
 
     issue_id = response_create.json()["id"]
     issues_key = response_create.json()["key"]
