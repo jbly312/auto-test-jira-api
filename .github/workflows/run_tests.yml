@@ -1,0 +1,39 @@
+name: Run Jira API Automated Tests
+
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-mode: ubuntu-latest  # Запускаем на чистой Linux-машине в облаке GitHub
+
+    steps:
+    # 1. Скачиваем код репозитория на виртуальную машину
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2. Разворачиваем Python
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    # 3. Устанавливаем зависимости
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # 4. Запускаем тесты и прокидываем секреты из настроек GitHub в переменные среды
+    - name: Run Pytest Automation Suite
+      env:
+        JIRA_BASE_URL: ${{ secrets::JIRA_BASE_URL }}
+        JIRA_EMAIL: ${{ secrets::JIRA_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets::JIRA_API_TOKEN }}
+        JIRA_PROJECT_KEY: "TI"
+      run: |
+        pytest -v tests/test_issues.py
