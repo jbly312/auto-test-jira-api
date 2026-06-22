@@ -1,0 +1,11 @@
+{
+    "fields": {
+        "project": {
+            "key": "TI"
+        },
+        "summary": "",
+        "issuetype": {
+            "name": "Task"
+        }
+    }
+}

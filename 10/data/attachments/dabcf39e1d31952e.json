@@ -1,0 +1,11 @@
+{
+    "fields": {
+        "project": {
+            "key": "TI"
+        },
+        "summary": "Автотест: Критический баг в модуле оплаты",
+        "issuetype": {
+            "name": "Bug"
+        }
+    }
+}
