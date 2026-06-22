@@ -3,7 +3,7 @@ import base64
 from locust import HttpUser, task, between
 from dotenv import load_dotenv
 import random
-# Загружаем доступы из нашего .env
+
 load_dotenv()
 
 class JiraAmbitiousUser(HttpUser):

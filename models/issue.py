@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field, HttpUrl
 class IssueCreateResponse(BaseModel):
     """Модель для валидации ответа после создания задачи (POST)"""
     id: str
-    key: str  # Например: "KAN-1"
+    key: str  # Например: "KAN-1"k
     self_url: HttpUrl = Field(..., alias="self")
 
 class IssueStatus(BaseModel):

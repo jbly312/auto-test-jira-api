@@ -3,7 +3,7 @@ import base64
 import pytest
 from dotenv import load_dotenv
 
-# Загружаем переменные из файла .env при старте тестов
+
 load_dotenv()
 
 

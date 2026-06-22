@@ -34,10 +34,8 @@ def bulk_cleanup():
 
     response_data = response.json()
 
-    # В новом API Atlassian массив задач лежит в ключе 'results', а не 'issues'
     issues = response_data.get("results", [])
 
-    # На всякий случай проверяем и старый ключ, если Atlassian отдаёт гибридный ответ
     if not issues:
         issues = response_data.get("issues", [])
 

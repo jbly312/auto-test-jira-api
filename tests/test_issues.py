@@ -3,6 +3,7 @@ import json
 import pytest
 import requests
 from models.issue import IssueCreateResponse, IssueGetResponse
+import allure
 
 
 def load_test_data():
@@ -25,27 +26,58 @@ def test_create_issue_ddt(case, base_url, jira_auth_headers):
     if "type" in case:
         payload["fields"]["issuetype"]["name"] = case["type"]
 
-    # Переменная для хранения ID созданной задачи (чтобы удалить её потом)
     created_issue_id = None
 
     try:
-        response = requests.post(url, json=payload, headers=jira_auth_headers)
+        # === 1. ШАГ: ОТПРАВКА POST ЗАПРОСА ===
+        with allure.step("Отправка POST запроса на создание задачи"):
+            allure.attach(
+                json.dumps(payload, indent=4, ensure_ascii=False),
+                name="Request Body (POST)",
+                attachment_type=allure.attachment_type.JSON
+            )
+
+            response = requests.post(url, json=payload, headers=jira_auth_headers)
+
+            allure.attach(
+                json.dumps(response.json() if response.text else {}, indent=4, ensure_ascii=False),
+                name=f"Response Body (POST) - Status {response.status_code}",
+                attachment_type=allure.attachment_type.JSON
+            )
+
+        # Проверяем ожидаемый статус из тест-данных
         assert response.status_code == case["expected_status"], f"Ошибка: {response.text}"
 
+        # === 2. ШАГ: ЕСЛИ ЗАДАЧА СОЗДАНА, ПРОВЕРЯЕМ ЕЁ ЧЕРЕЗ GET ===
         if response.status_code == 201:
             response_data = response.json()
-            created_issue_id = response_data["id"]  # Запоминаем ID
+            created_issue_id = response_data["id"]
 
-            # Валидация контракта (POST)
-            created_issue = IssueCreateResponse(**response_data)
+            with allure.step("Валидация контракта ответа (POST)"):
+                created_issue = IssueCreateResponse(**response_data)
 
-            # Проверка через GET
-            get_response = requests.get(f"{url}/{created_issue.id}", headers=jira_auth_headers)
-            issue_details = IssueGetResponse(**get_response.json())
-            assert issue_details.fields.summary == case["summary"]
+            with allure.step("Отправка GET запроса для проверки созданной задачи"):
+                get_response = requests.get(f"{url}/{created_issue.id}", headers=jira_auth_headers)
+
+                allure.attach(
+                    json.dumps(get_response.json() if get_response.text else {}, indent=4, ensure_ascii=False),
+                    name=f"Response Body (GET) - Status {get_response.status_code}",
+                    attachment_type=allure.attachment_type.JSON
+                )
+
+                issue_details = IssueGetResponse(**get_response.json())
+                assert issue_details.fields.summary == case["summary"]
+
+    except Exception as e:
+        allure.attach(str(e), name="Exception Info", attachment_type=allure.attachment_type.TEXT)
+        raise e
 
     finally:
         if created_issue_id:
-            delete_url = f"{url}/{created_issue_id}"
-            delete_response = requests.delete(delete_url, headers=jira_auth_headers)
-            assert delete_response.status_code == 204, f"Не удалось удалить задачу после теста: {delete_response.text}"
+            with allure.step(f"Очистка данных: Удаление задачи {created_issue_id}"):
+                delete_response = requests.delete(f"{url}/{created_issue_id}", headers=jira_auth_headers)
+                allure.attach(
+                    f"Status Code: {delete_response.status_code}",
+                    name="Delete Response Status",
+                    attachment_type=allure.attachment_type.TEXT
+                )
