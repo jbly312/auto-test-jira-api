@@ -12,10 +12,10 @@ def test_delete_issue(base_url, jira_auth_headers):
             "issuetype":{"name":"Task"},
         }
     }
-
-    response_create = requests.post(create_url, headers=jira_auth_headers, json=payload_create)
-
-    assert response_create.status_code == 201
+    with allure.step(f"Создание задачи"):
+        response_create = requests.post(create_url, headers=jira_auth_headers, json=payload_create)
+        with allure.step(f"Статус код ответа: {response_create.status_code}"): pass
+        assert response_create.status_code == 201
 
     issue_id = response_create.json()["id"]
     issues_key = response_create.json()["key"]
@@ -24,8 +24,8 @@ def test_delete_issue(base_url, jira_auth_headers):
     try:
 
         new_summary = f"Task for deletion"
-
         payload_update = {"fields":{"summary":new_summary}}
+
         with allure.step(f"Отправка DELETE запроса"):
             allure.attach(
                 json.dumps(payload_update, indent=4, ensure_ascii=False),
@@ -33,7 +33,13 @@ def test_delete_issue(base_url, jira_auth_headers):
                 attachment_type=allure.attachment_type.JSON
             )
             response = requests.delete(issues_url, headers=jira_auth_headers)
+
+            with allure.step(f"Статус код ответа: {response.status_code}"): pass
+            if response.text:
+                allure.attach(response.text, name = "Request Body(DELETE)",attachment_type=allure.attachment_type.TEXT)
+
             assert response.status_code == 204
+
 
         with allure.step(f"Отправка get запроса для проверки"):
             response_get = requests.get(issues_url, headers=jira_auth_headers)
@@ -43,6 +49,9 @@ def test_delete_issue(base_url, jira_auth_headers):
                 name = "Request Body(GET)",
                 attachment_type=allure.attachment_type.JSON
             )
+
+            with allure.step(f"Статус код ответа: {response_get.status_code}"): pass
+
             assert response_get.status_code == 404
 
 

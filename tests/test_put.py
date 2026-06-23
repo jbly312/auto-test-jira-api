@@ -13,9 +13,10 @@ def test_update_issue(base_url, jira_auth_headers):
             "issuetype": {"name": "Task"}
         }
     }
-
-    response_create = requests.post(create_url, headers=jira_auth_headers, json=payload_create)
-    assert response_create.status_code == 201
+    with allure.step(f"Создание задачи"):
+        response_create = requests.post(create_url, headers=jira_auth_headers, json=payload_create)
+        with allure.step(f"Статус код ответа: {response_create.status_code}"): pass
+        assert response_create.status_code == 201
 
     issue_id = response_create.json()["id"]
     issues_key = response_create.json()["key"]
@@ -33,11 +34,15 @@ def test_update_issue(base_url, jira_auth_headers):
                 attachment_type=allure.attachment_type.JSON
             )
             response = requests.put(issues_url, headers=jira_auth_headers, json=payload_update)
+
+            with allure.step(f"Статус код отве: {response.status_code}"): pass
+            if response.text:
+                allure.attach(response.text, name="Request Body(PUT)", attachment_type=allure.attachment_type.TEXT)
+
             assert response.status_code == 204
 
         with allure.step(f"Отправка GET запроса для проверки"):
             response_get = requests.get(issues_url, headers=jira_auth_headers)
-            assert response_get.status_code == 200
 
             allure.attach(
                 json.dumps(response_get.json(), indent=4, ensure_ascii=False),
@@ -45,6 +50,9 @@ def test_update_issue(base_url, jira_auth_headers):
                 attachment_type=allure.attachment_type.JSON
             )
             assert response_get.json()["fields"]["summary"] == new_summary
+            with allure.step(f"Статус код ответа:{response_get.status_code}"): pass
+
+            assert response_get.status_code == 200
 
     finally:
         with allure.step(f"Очистка данных"):
