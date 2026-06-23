@@ -1,0 +1,11 @@
+{
+    "fields": {
+        "project": {
+            "key": "TI"
+        },
+        "summary": "Автотест: Проверить интеграцию с Jira API",
+        "issuetype": {
+            "name": "Task"
+        }
+    }
+}
